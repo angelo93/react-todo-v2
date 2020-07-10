@@ -7,14 +7,14 @@ import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 import DeleteIcon from "@material-ui/icons/Delete";
 import EditIcon from "@material-ui/icons/Edit";
 // Contexts
-import { TodosContext } from "./contexts/todos.context";
+import { DispatchContext } from "./contexts/todos.context";
 // Components
 import EditTodoForm from "./EditTodoForm";
 // Hooks
 import useToggleState from "./hooks/useToggleState";
 
 function Todo({ id, task, completed }) {
-  const { dispatch } = useContext(TodosContext);
+  const dispatch = useContext(DispatchContext);
   const [isEditing, toggleIsEditing] = useToggleState(false);
 
   return (
