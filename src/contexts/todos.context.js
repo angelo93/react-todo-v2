@@ -1,20 +1,17 @@
-// todos
-
-// methods that interact w/ todos
-import React, { createContext } from "react";
+import React, { createContext, useReducer } from "react";
 import { v4 as uuid } from "uuid";
-
-import useTodoState from "../hooks/useTodoState";
+// Reducers
+import todoReducer from "../reducers/todos.reducer";
 
 const defaultTodos = [{ id: uuid(), task: "Add Todos", completed: false }];
 
 export const TodosContext = createContext();
 
 export function TodosProvider(props) {
-  const todosHelpers = useTodoState(defaultTodos);
+  const [todos, dispatch] = useReducer(todoReducer, defaultTodos);
 
   return (
-    <TodosContext.Provider value={todosHelpers}>
+    <TodosContext.Provider value={{ todos, dispatch }}>
       {props.children}
     </TodosContext.Provider>
   );
